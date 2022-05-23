@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  frontend:    
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    command: ["nginx", "-g", "daemon off;"]
+    ports:
+      - 80:80
+      - 443:443
+    expose:
+      - 80
+      - 443
+
+  backend:
+    build: 
+      context: ./back
+      dockerfile: Dockerfile
+    command: ["yarn", "start"]
+    ports:
+      - 4000:4000
+    expose:
+      - 4000
